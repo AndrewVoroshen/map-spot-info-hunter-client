@@ -8,22 +8,27 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
+import { MapComponent } from './map/map.component';
 
 import { httpInterceptorProviders } from './auth/auth-interceptor';
+
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    MapComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDJ027nmE6e-NagCOJzUnbRl3qhLjs27_s'
+    })
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

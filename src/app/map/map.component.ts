@@ -3,21 +3,22 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../auth/token-storage.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css']
 })
-export class HomeComponent implements OnInit {
+export class MapComponent implements OnInit {
   
   info: any;
+
+  lat: number = 51.678418;
+  lng: number = 7.809007;
 
   constructor(private token: TokenStorageService) { }
 
   ngOnInit() {
     this.info = {
-      token: this.token.getToken(),
-      username: this.token.getUsername(),
-      authorities: this.token.getAuthorities()
+      token: this.token.getToken()
     };
   }
 
