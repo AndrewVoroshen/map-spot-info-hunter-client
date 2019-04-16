@@ -11,6 +11,10 @@ import { SpotRequest } from './model/spot-request';
 })
 export class MapComponent implements OnInit {
   
+  lat: any;
+  lng: any;
+  radius: any;
+
   info: any;
 
   constructor(private token: TokenStorageService, private spotService: SpotService) { }
@@ -26,16 +30,14 @@ export class MapComponent implements OnInit {
     var lng = event.coords.lng;
     this.spotService.save(new SpotRequest(lat, lng)).subscribe(
       data => {
-        console.log(data);
+        this.lat = data.lat;
+        this.lng = data.lng;
+        this.radius = data.radius;
+        // console.log(data);
       }, 
       error => {
         console.log(error);
       }
     );
-  }
-
-  logout() {
-    this.token.signOut();
-    window.location.reload();
-  }
+  } 
 }

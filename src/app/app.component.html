@@ -16,7 +16,10 @@
       </li>-->
       <li *ngIf="!authority" class="nav-item">
         <a class="nav-link" routerLink="auth/login">Login</a>
-      </li> 
+      </li>
+      <li *ngIf="authority" class="nav-item">
+        <a class="nav-link" routerLink="map" (click)="logout()">Logout</a>
+      </li>
     </ul>
   </div>
 </nav>
