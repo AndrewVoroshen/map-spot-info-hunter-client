@@ -1,12 +1,12 @@
 export class SignInResponse {
     
-    accessToken: string;
+    token: string;
     type: string;
     username: string;
     authorities: string[];
 
-    constructor(accessToken: string, type: string, username: string, authorities: string[]) {
-        this.accessToken = accessToken;
+    constructor(token: string, type: string, username: string, authorities: string[]) {
+        this.token = token;
         this.type = type;
         this.username = username;
         this.authorities = authorities;
