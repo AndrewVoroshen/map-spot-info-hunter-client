@@ -11,9 +11,9 @@ import { SpotRequest } from './model/spot-request';
 })
 export class MapComponent implements OnInit {
   
-  lat: any;
-  lng: any;
-  radius: any;
+  lat: number;
+  lng: number;
+  radius: number;
 
   info: any;
 
