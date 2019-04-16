@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { JwtResponse } from './jwt-response';
-import { AuthLoginInfo } from './login-info';
-import { SignUpInfo } from './signup-info';
+import { SignInResponse } from './model/sign-in-response';
+import { SignInRequest } from './model/sign-in-request';
+import { SignUpRequest } from './model/sign-up-request';
 
 import { environment } from '../../environments/environment';
+import { SingUpResponse } from './model/sign-up-response';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,17 +18,17 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private loginUrl = '/api/auth/signin'; // TODO: change according to env
-  private signupUrl = '/api/auth/signup'; // TODO: change according to env
+  private loginUrl = '/api/signin';
+  private signupUrl = '/api/signup';
 
   constructor(private http: HttpClient) {
   }
 
-  attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
-    return this.http.post<JwtResponse>(environment.apiUrl + this.loginUrl, credentials, httpOptions);
+  signIn(credentials: SignInRequest): Observable<SignInResponse> {
+    return this.http.post<SignInResponse>(environment.apiUrl + this.loginUrl, credentials, httpOptions);
   }
 
-  signUp(info: SignUpInfo): Observable<string> {
-    return this.http.post<string>(environment.apiUrl + this.signupUrl, info, httpOptions);
+  signUp(info: SignUpRequest): Observable<SingUpResponse> {
+    return this.http.post<SingUpResponse>(environment.apiUrl + this.signupUrl, info, httpOptions);
   }
 }

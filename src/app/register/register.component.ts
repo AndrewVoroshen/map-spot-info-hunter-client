@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../auth/auth.service';
-import { SignUpInfo } from '../auth/signup-info';
+import { SignUpRequest } from '../auth/model/sign-up-request';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +10,7 @@ import { SignUpInfo } from '../auth/signup-info';
 })
 export class RegisterComponent implements OnInit {
   form: any = {};
-  signupInfo: SignUpInfo;
+  signupInfo: SignUpRequest;
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     console.log(this.form);
 
-    this.signupInfo = new SignUpInfo(
+    this.signupInfo = new SignUpRequest(
       this.form.name,
       this.form.username,
       this.form.email,

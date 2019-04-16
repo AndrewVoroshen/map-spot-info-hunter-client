@@ -1,8 +1,11 @@
 <div *ngIf="info.token; else loggedOut">
-  <agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+
+  <agm-map (mapClick)="onChoseLocation($event)">
+    
   </agm-map>
+  
   <button class="btn btn-secondary" (click)="logout()">Logout</button>
+
 </div>
 
 <ng-template #loggedOut>

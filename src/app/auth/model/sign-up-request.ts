@@ -1,9 +1,9 @@
-export class SignUpInfo {
+export class SignUpRequest {
     
     name: string;
     username: string;
     email: string;
-    role: string[];
+    authorities: string[];
     password: string;
 
     constructor(name: string, username: string, email: string, password: string) {
@@ -11,6 +11,6 @@ export class SignUpInfo {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = ['user'];
+        this.authorities = ['user'];
     }
 }

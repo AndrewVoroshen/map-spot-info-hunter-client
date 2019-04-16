@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../auth/auth.service';
 import { TokenStorageService } from '../auth/token-storage.service';
-import { AuthLoginInfo } from '../auth/login-info';
+import { SignInRequest } from '../auth/model/sign-in-request';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  private loginInfo: AuthLoginInfo;
+  private loginInfo: SignInRequest;
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
@@ -30,11 +30,11 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     console.log(this.form);
 
-    this.loginInfo = new AuthLoginInfo(
+    this.loginInfo = new SignInRequest(
       this.form.username,
       this.form.password);
 
-    this.authService.attemptAuth(this.loginInfo).subscribe(
+    this.authService.signIn(this.loginInfo).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUsername(data.username);
