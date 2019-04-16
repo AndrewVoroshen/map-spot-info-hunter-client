@@ -24,8 +24,14 @@ export class MapComponent implements OnInit {
   onChoseLocation(event) {
     var lat = event.coords.lat;
     var lng = event.coords.lng;
-    var saved = this.spotService.save(new SpotRequest(lat, lng));
-    console.log(saved);
+    this.spotService.save(new SpotRequest(lat, lng)).subscribe(
+      data => {
+        console.log(data);
+      }, 
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   logout() {
