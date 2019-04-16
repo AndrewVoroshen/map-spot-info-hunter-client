@@ -21,6 +21,6 @@ export class SpotService {
   }
 
   save(spotRequest: SpotRequest): Observable<SpotResponse> {
-    return this.http.post<SpotResponse>(environment.apiUrl + this.spotSaveUrl, httpOptions);
+    return this.http.post<SpotResponse>(environment.apiUrl + this.spotSaveUrl, spotRequest, httpOptions);
   }
 }
