@@ -1,8 +1,19 @@
 <div *ngIf="info.token; else loggedOut">
 
-  <agm-map>
-    <agm-marker [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)"></agm-marker>
-    <agm-circle [latitude]="lat" [longitude]="lng" [radius]="radius"></agm-circle>
+  <agm-map (mapClick)="onChoseLocation($event)" [latitude]="initLat" [longitude]="initLng">
+    <agm-marker *ngFor="let spot of savedSpots" [latitude]="spot.lat" [longitude]="spot.lng">
+      <agm-circle [latitude]="spot.lat" [longitude]="spot.lng" [radius]="spot.radius">
+      </agm-circle>
+      <agm-info-window>
+        <a [routerLink]="['/spot', spot.id]" routerLinkActive="active">More info</a>
+        <p><strong>Country: {{spot.country}}</strong></p>
+        <p>Address: {{spot.address}}</p>
+        <p>Population density: {{spot.populationDensity}}</p>
+        <p>Languages: {{spot.languages}}</p>
+        <p>Weather: {{spot.weather}}</p>
+        <p>Currencies: {{spot.currencies}}</p>
+      </agm-info-window>
+    </agm-marker>
   </agm-map>
 
   <!-- <button class="btn btn-secondary" (click)="logout()">Logout</button> -->

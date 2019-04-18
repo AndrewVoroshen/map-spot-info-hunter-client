@@ -13,13 +13,17 @@ import { MapComponent } from './map/map.component';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 
 import { AgmCoreModule } from '@agm/core';
+import { NavComponent } from './nav/nav.component';
+import { SpotComponent } from './spot/spot.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    MapComponent
+    MapComponent,
+    NavComponent,
+    SpotComponent
   ],
   imports: [
     BrowserModule,

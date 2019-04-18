@@ -1,9 +1,9 @@
 export class SpotRequest {
     
-    lat: any;
-    lng: any;
+    lat: number;
+    lng: number;
 
-    constructor(lat: any, lng: any) {
+    constructor(lat: number, lng: number) {
         this.lat = lat;
         this.lng = lng;
     }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { SpotService } from './map.service';
 import { SpotRequest } from './model/spot-request';
+import { SpotResponse } from './model/spot-response';
 
 @Component({
   selector: 'app-map',
@@ -10,9 +11,10 @@ import { SpotRequest } from './model/spot-request';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  
-  lat: number;
-  lng: number;
+
+  savedSpots: SpotResponse[];
+  initLat: number = 53.9;
+  initLng: number = 27.56667;
   radius: number;
 
   info: any;
@@ -23,6 +25,14 @@ export class MapComponent implements OnInit {
     this.info = {
       token: this.token.getToken()
     };
+    this.spotService.getAll().subscribe(
+      data => {
+        this.savedSpots = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   onChoseLocation(event) {
@@ -30,14 +40,11 @@ export class MapComponent implements OnInit {
     var lng = event.coords.lng;
     this.spotService.save(new SpotRequest(lat, lng)).subscribe(
       data => {
-        this.lat = data.lat;
-        this.lng = data.lng;
-        this.radius = data.radius;
-        // console.log(data);
-      }, 
+        this.savedSpots.push(data);
+      },
       error => {
         console.log(error);
       }
     );
-  } 
+  }
 }

@@ -16,11 +16,22 @@ const httpOptions = {
 export class SpotService {
 
   private spotSaveUrl = '/api/spot';
+  private all = '/api/spot/all';
+  private one = '/api/spot/'
+
 
   constructor(private http: HttpClient) {
   }
 
   save(spotRequest: SpotRequest): Observable<SpotResponse> {
     return this.http.post<SpotResponse>(environment.apiUrl + this.spotSaveUrl, spotRequest, httpOptions);
+  }
+
+  getAll() : Observable<SpotResponse[]> {
+    return this.http.get<SpotResponse[]>(environment.apiUrl + this.all, httpOptions);
+  }
+
+  getOne(id: number) : Observable<SpotResponse> {
+    return this.http.get<SpotResponse>(environment.apiUrl + this.one + id, httpOptions);
   }
 }

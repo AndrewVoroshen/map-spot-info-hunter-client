@@ -2,20 +2,20 @@ import { PlaceResponse } from './place-response';
 
 export class SpotResponse {
 
-    id: any;
-    lng: any;
-    lat: any;
-    radius: any;
+    id: number;
+    lng: number;
+    lat: number;
+    radius: number;
     country: string;
     address: string;
-    populationDensity: any;
+    populationDensity: number;
     languages: string[];
     weather: string;
     currencies: string[];
-    placeResponses: PlaceResponse[]
+    placeResponses: PlaceResponse[];
 
-    constructor(id: any, lng: any, lat: any, radius: any, country: string, address: string, 
-        populationDensity: any, languages: string[], weather: string, currencies: string[], placeResponses: PlaceResponse[]) {
+    constructor(id: number, lng: number, lat: number, radius: number, country: string, address: string, 
+        populationDensity: number, languages: string[], weather: string, currencies: string[], placeResponses: PlaceResponse[]) {
         this.id = id;
         this.lng = lng;
         this.lat = lat;
