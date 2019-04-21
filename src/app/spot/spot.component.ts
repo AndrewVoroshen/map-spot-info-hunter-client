@@ -14,6 +14,7 @@ export class SpotComponent implements OnInit {
   @Input() id: any;
 
   places: PlaceResponse[];
+  spotName: string;
 
   constructor(private route: ActivatedRoute, private spotService: SpotService) { }
 
@@ -23,6 +24,7 @@ export class SpotComponent implements OnInit {
     )
     this.spotService.getOne(this.id).subscribe(
       data => {
+        this.spotName = data.address;
         this.places = data.placeResponses;
       },
       error => {

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { SignInRequest } from '../auth/model/sign-in-request';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   private loginInfo: SignInRequest;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
@@ -44,6 +45,8 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
         this.reloadPage();
+        // this.router.navigateByUrl('/map');
+       
       },
       error => {
         console.log(error);
@@ -55,5 +58,6 @@ export class LoginComponent implements OnInit {
 
   reloadPage() {
     window.location.reload();
+    window.location.href = 'map';
   }
 }

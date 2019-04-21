@@ -1,25 +1,42 @@
 <div *ngIf="info.token; else loggedOut">
 
-  <agm-map (mapClick)="onChoseLocation($event)" [latitude]="initLat" [longitude]="initLng">
+  <agm-map (mapClick)="onChoseLocation($event)" [latitude]="initLat" [longitude]="initLng" [usePanning]="true">
     <agm-marker *ngFor="let spot of savedSpots" [latitude]="spot.lat" [longitude]="spot.lng">
       <agm-circle [latitude]="spot.lat" [longitude]="spot.lng" [radius]="spot.radius">
       </agm-circle>
       <agm-info-window>
-        <a [routerLink]="['/spot', spot.id]" routerLinkActive="active">More info</a>
         <p><strong>Country: {{spot.country}}</strong></p>
         <p>Address: {{spot.address}}</p>
         <p>Population density: {{spot.populationDensity}}</p>
         <p>Languages: {{spot.languages}}</p>
         <p>Weather: {{spot.weather}}</p>
         <p>Currencies: {{spot.currencies}}</p>
+        <a [routerLink]="['/spot', spot.id]" routerLinkActive="active">View info...</a>
       </agm-info-window>
     </agm-marker>
   </agm-map>
 
-  <!-- <button class="btn btn-secondary" (click)="logout()">Logout</button> -->
+  <div class="user-input mt-2">
+      <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Lng</span>
+          </div>
+          <input type="text" class="form-control" placeholder="eg. 27.56667" aria-label="Lng" aria-describedby="basic-addon1" [(ngModel)]="form.lng" #lng="ngModel">
+        </div>
+      
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Lat</span>
+          </div>
+          <input type="text" class="form-control" placeholder="eg. 53.9" aria-label="Lat" aria-describedby="basic-addon1" [(ngModel)]="form.lat" #lat="ngModel">
+        </div>
+  </div>
+
+  <button type="button" class="btn btn-primary float-left" (click)="find()">Find</button>
+  <button type="button" class="btn btn-danger float-right" (click)="delete()">Delete all</button>
 
 </div>
 
 <ng-template #loggedOut>
-  Please login.
+  <div class="alert alert-warning" role="alert">Please login!</div>
 </ng-template>

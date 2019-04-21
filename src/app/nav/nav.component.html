@@ -1,16 +1,24 @@
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Map-Spot-Info-Hunter</a>
-      </div>
-      <ul class="nav navbar-nav" routerLinkActive="active">
-        <li class="nav-item"><a class="nav-link" routerLink="map">Map</a></li>
-        <li *ngIf="!authority" class="nav-item">
-          <a class="nav-link" routerLink="auth/login">Login</a>
-        </li>
-        <li *ngIf="authority" class="nav-item">
-          <a class="nav-link" routerLink="map" (click)="logout()">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="navbar-brand" routerLink="map">Map-Spot-Info-Hunter <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li *ngIf="!authority" class="nav-item">
+
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink="auth/login">Login</button>
+
+        <!-- <a class="nav-link" routerLink="auth/login">Login</a> -->
+      </li>
+      <li *ngIf="authority" class="nav-item">
+        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="logout()">Logout</button>
+      </li>
+    </ul>
+  </div>
+</nav>

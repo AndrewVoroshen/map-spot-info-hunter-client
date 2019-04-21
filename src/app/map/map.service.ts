@@ -7,7 +7,9 @@ import { SpotRequest } from './model/spot-request';
 import { SpotResponse } from './model/spot-response';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
 };
 
 @Injectable({
@@ -19,7 +21,6 @@ export class SpotService {
   private all = '/api/spot/all';
   private one = '/api/spot/'
 
-
   constructor(private http: HttpClient) {
   }
 
@@ -27,11 +28,15 @@ export class SpotService {
     return this.http.post<SpotResponse>(environment.apiUrl + this.spotSaveUrl, spotRequest, httpOptions);
   }
 
-  getAll() : Observable<SpotResponse[]> {
+  getAll(): Observable<SpotResponse[]> {
     return this.http.get<SpotResponse[]>(environment.apiUrl + this.all, httpOptions);
   }
 
-  getOne(id: number) : Observable<SpotResponse> {
+  getOne(id: number): Observable<SpotResponse> {
     return this.http.get<SpotResponse>(environment.apiUrl + this.one + id, httpOptions);
+  }
+
+  deleteAll(): Observable<any> {
+    return this.http.delete<any>(environment.apiUrl + this.all, httpOptions);
   }
 }
