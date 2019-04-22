@@ -27,12 +27,13 @@ export class SpotComponent implements OnInit {
       data => {
         this.spotName = data.address;
         this.places = data.placeResponses;
+        this.isDataLoaded = true;
       },
       error => {
+        this.isDataLoaded = true;
         console.log(error);
       }
     )
-    this.isDataLoaded = true;
   }
 
 }
