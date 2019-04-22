@@ -18,7 +18,6 @@ export class MapComponent implements OnInit {
   initLng: number = 27.56667;
   errorMessage: string = null;
   radius: number;
-
   info: any;
 
   constructor(private token: TokenStorageService, private spotService: SpotService) { }

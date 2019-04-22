@@ -15,6 +15,7 @@ export class SpotComponent implements OnInit {
 
   places: PlaceResponse[];
   spotName: string;
+  isDataLoaded: boolean = false;
 
   constructor(private route: ActivatedRoute, private spotService: SpotService) { }
 
@@ -31,6 +32,7 @@ export class SpotComponent implements OnInit {
         console.log(error);
       }
     )
+    this.isDataLoaded = true;
   }
 
 }

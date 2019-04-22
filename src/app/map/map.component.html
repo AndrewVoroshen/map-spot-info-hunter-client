@@ -5,12 +5,12 @@
       <agm-circle [latitude]="spot.lat" [longitude]="spot.lng" [radius]="spot.radius">
       </agm-circle>
       <agm-info-window>
-        <p><strong>Country: {{spot.country}}</strong></p>
-        <p>Address: {{spot.address}}</p>
-        <p>Population density: {{spot.populationDensity}}</p>
-        <p>Languages: {{spot.languages}}</p>
-        <p>Weather: {{spot.weather}}</p>
-        <p>Currencies: {{spot.currencies}}</p>
+        <p><strong>Country:</strong> {{spot.country}}</p>
+        <p><strong>Address:</strong> {{spot.address}}</p>
+        <p><strong>Population density:</strong> {{spot.populationDensity}}</p>
+        <p><strong>Languages:</strong> {{spot.languages}}</p>
+        <p><strong>Weather:</strong> {{spot.weather}}</p>
+        <p><strong>Currencies:</strong> {{spot.currencies}}</p>
         <a [routerLink]="['/spot', spot.id]" routerLinkActive="active">View info...</a>
       </agm-info-window>
     </agm-marker>

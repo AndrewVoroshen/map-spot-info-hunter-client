@@ -1,24 +1,27 @@
-<h1 class="display-3">{{spotName}}</h1>
+<div *ngIf="isDataLoaded">
 
-<div *ngIf="places == undefined || places == null || places.length == 0; else Table">
-  <div class="alert alert-warning" role="alert">
-    No places found for selected spot!
+  <h1 class="display-3">{{spotName}}</h1>
+
+  <div *ngIf="places == undefined || places == null || places.length == 0; else Table">
+    <div class="alert alert-warning" role="alert">
+      No places found for selected spot!
+    </div>
   </div>
-</div>
 
-<ng-template #Table>
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Place</th>
-        <th scope="col">Rating</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let place of places">
-      <tr>
-        <td>{{place.name}}</td>
-        <td>{{place.rating}}</td>
-      </tr>
-    </tbody>
-  </table>
-</ng-template>
+  <ng-template #Table>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Place</th>
+          <th scope="col">Rating</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let place of places">
+        <tr>
+          <td>{{place.name}}</td>
+          <td>{{place.rating}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+</div>
