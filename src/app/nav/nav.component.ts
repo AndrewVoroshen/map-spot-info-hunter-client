@@ -10,12 +10,11 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
 
   private roles: string[];
-  private authority: string;
+  authority: string;
 
   constructor(private tokenStorage: TokenStorageService, private router: Router) { }
   
   ngOnInit() {
-    // window.location.reload();
     if (this.tokenStorage.getToken()) {
       this.roles = this.tokenStorage.getAuthorities();
       this.roles.every(role => {
