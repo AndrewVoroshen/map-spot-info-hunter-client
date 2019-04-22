@@ -16,6 +16,7 @@ export class MapComponent implements OnInit {
   savedSpots: SpotResponse[];
   initLat: number = 53.9;
   initLng: number = 27.56667;
+  errorMessage: string = null;
   radius: number;
 
   info: any;
@@ -51,10 +52,11 @@ export class MapComponent implements OnInit {
       data => {
         this.initLat = data.lat;
         this.initLng = data.lng;
+        this.errorMessage = null;
         this.savedSpots.push(data);
       },
       error => {
-        console.log(error);
+        this.errorMessage = error.error.message;
       }
     );
   }
@@ -62,10 +64,11 @@ export class MapComponent implements OnInit {
   delete() {
     this.spotService.deleteAll().subscribe(
       data => {
-        console.log(data);
+        this.savedSpots = new Array<SpotResponse>();
+        this.errorMessage = null;
       },
       error => {
-        console.log(error);
+        this.errorMessage = error.error.message;
       }
     )
   }

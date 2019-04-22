@@ -10,14 +10,12 @@
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Place</th>
         <th scope="col">Rating</th>
       </tr>
     </thead>
-    <tbody *ngFor="let place of places; index as i">
+    <tbody *ngFor="let place of places">
       <tr>
-        <th scope="row">{{i + 1}}</th>
         <td>{{place.name}}</td>
         <td>{{place.rating}}</td>
       </tr>
