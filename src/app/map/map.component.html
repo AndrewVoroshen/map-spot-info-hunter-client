@@ -17,31 +17,47 @@
   </agm-map>
 
 
+  <form name="form" (ngSubmit)="search.form.valid && onSubmit(search)" #search="ngForm" novalidate>
 
-  <div class="user-input mt-2">
-    <div class="input-group mb-2">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Lng</span>
+    <div class="form-group user-input mt-2">
+
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Lng</span>
+        </div>
+        <input type="text" class="form-control" placeholder="eg. 27.56667" aria-label="Lng"
+          aria-describedby="basic-addon1" name="longitude" ngModel #longitude="ngModel"
+          pattern="^-?[0-9]\d*(\.\d+)?$" required>
       </div>
-      <input type="text" class="form-control" placeholder="eg. 27.56667" aria-label="Lng"
-        aria-describedby="basic-addon1" [(ngModel)]="form.lng" #lng="ngModel">
+
+      <div *ngIf="search.submitted && longitude.invalid" class="in alert alert-danger mt-2 mb-2">
+        <div *ngIf="longitude.errors?.required">Longitude is required</div>
+        <div *ngIf="longitude.errors?.pattern">Longitude should be a number</div>
+      </div>
+
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Lat</span>
+        </div>
+        <input type="text" class="form-control" name="latitude" placeholder="eg. 53.9" aria-label="Lat" aria-describedby="basic-addon1"
+          ngModel #latitude="ngModel" pattern="^-?[0-9]\d*(\.\d+)?$" required>
+      </div>
+
     </div>
 
-    <div class="input-group mb-2">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Lat</span>
-      </div>
-      <input type="text" class="form-control" placeholder="eg. 53.9" aria-label="Lat" aria-describedby="basic-addon1"
-        [(ngModel)]="form.lat" #lat="ngModel">
+    <div *ngIf="search.submitted && latitude.invalid" class="in alert alert-danger mt-2 mb-2">
+      <div *ngIf="latitude.errors?.required">Latitude is required</div>
+      <div *ngIf="latitude.errors?.pattern">Latitude should be a number</div>
     </div>
-  </div>
 
-  <div *ngIf="errorMessage != null" class="alert alert-danger mt-2 mb-2">
-    Error occuried: {{errorMessage}}
-  </div>
+    <div *ngIf="errorMessage != null" class="alert alert-danger mt-1 mb-2">Error occuried: {{errorMessage}}</div>
 
-  <button type="button" class="btn btn-primary float-left" (click)="find()">Find</button>
-  <button type="button" class="btn btn-danger float-right" (click)="delete()">Delete all</button>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary float-left">Find</button>
+      <button type="button" class="btn btn-danger float-right" (click)="delete()">Delete all</button>
+    </div>
+
+  </form>
 
 </div>
 

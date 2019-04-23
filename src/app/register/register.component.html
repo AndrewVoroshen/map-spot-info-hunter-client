@@ -20,7 +20,7 @@
                     <label for="name">Your name</label>
                     <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel"
                       required />
-                    <div *ngIf="f.submitted && name.invalid">
+                    <div *ngIf="f.submitted && name.invalid" class="alert alert-danger mt-2">
                       <div *ngIf="name.errors.required">Name is required</div>
                     </div>
                   </div>
@@ -28,7 +28,7 @@
                     <label for="username">Username</label>
                     <input type="text" class="form-control" name="username" [(ngModel)]="form.username"
                       #username="ngModel" required />
-                    <div *ngIf="f.submitted && username.invalid">
+                    <div *ngIf="f.submitted && username.invalid" class="alert alert-danger mt-2">
                       <div *ngIf="username.errors.required">Username is required</div>
                     </div>
                   </div>
@@ -36,7 +36,7 @@
                     <label for="email">Email</label>
                     <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel"
                       required email />
-                    <div *ngIf="f.submitted && email.invalid">
+                    <div *ngIf="f.submitted && email.invalid" class="alert alert-danger mt-2">
                       <div *ngIf="email.errors.required">Email is required</div>
                       <div *ngIf="email.errors.email">Email must be a valid email address</div>
                     </div>
@@ -45,7 +45,7 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" name="password" [(ngModel)]="form.password"
                       #password="ngModel" required minlength="6" />
-                    <div *ngIf="f.submitted && password.invalid">
+                    <div *ngIf="f.submitted && password.invalid" class="alert alert-danger mt-2">
                       <div *ngIf="password.errors.required">Password is required</div>
                       <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
                     </div>

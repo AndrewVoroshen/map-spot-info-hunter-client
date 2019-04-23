@@ -4,6 +4,7 @@ import { TokenStorageService } from '../auth/token-storage.service';
 import { SpotService } from './map.service';
 import { SpotRequest } from './model/spot-request';
 import { SpotResponse } from './model/spot-response';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-map',
@@ -12,7 +13,7 @@ import { SpotResponse } from './model/spot-response';
 })
 export class MapComponent implements OnInit {
 
-  form: any = {};
+  search: any = {};
   savedSpots: SpotResponse[];
   initLat: number = 53.9;
   initLng: number = 27.56667;
@@ -42,8 +43,8 @@ export class MapComponent implements OnInit {
     this.save(lng, lat)
   }
 
-  find() {
-    this.save(this.form.lng, this.form.lat)
+  onSubmit(form: NgForm) {
+    this.save(form.controls['longitude'].value, form.controls['latitude'].value)
   }
 
   save(lng: number, lat: number) {
